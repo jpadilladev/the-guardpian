@@ -7,7 +7,7 @@ This small project uses a Raspberry Pi 3B+, a Camera and a PIR Sensor and it is 
 - [Raspberry Pi](https://www.raspberrypi.org/) - Any version of Raspberry Pi will work.
 - [PIR Motion Sensor](https://www.amazon.co.uk/gp/product/B00NFXBPU8) - A PIR motion sensor and linked to GPIO 4.
 - [Pi Camera](https://www.amazon.co.uk/gp/product/B07TWHB8B4)
-- Python 
+- Python 3 
 - GIT (to clone this repo)
 
 ## How it works
@@ -23,7 +23,7 @@ To start The Guardpian, clone this repo and then use Python to run it.
 ```
 git clone https://github.com/jpadilladev/the-guardpian.git
 cd theguardpian
-python main.py
+python3 main.py
 ```
 
 It is recommended to add the starting script at Raspberry boot.
