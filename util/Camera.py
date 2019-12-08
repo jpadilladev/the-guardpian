@@ -1,5 +1,5 @@
 from time import sleep
-from picicameramera import PiCamera
+from picamera import PiCamera
 
 
 class Camera:

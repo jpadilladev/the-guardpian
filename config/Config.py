@@ -1,8 +1,8 @@
 import configparser
 
-from theguardpian.service.GuardpianService import GuardpianService
-from theguardpian.util.Camera import Camera
-from theguardpian.util.Gpio import Gpio
+from service.GuardpianService import GuardpianService
+from util import Camera
+from util.Gpio import Gpio
 
 
 class Config:
