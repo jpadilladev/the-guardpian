@@ -22,8 +22,8 @@ To start The Guardpian, clone this repo and then use Python to run it.
 
 ```
 git clone https://github.com/jpadilladev/the-guardpian.git
-
-python the-guardpian/theguardpian/main.py
+cd theguardpian
+python main.py
 ```
 
 It is recommended to add the starting script at Raspberry boot.

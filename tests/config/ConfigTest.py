@@ -1,4 +1,4 @@
-from theguardpian.config.Config import Config
+from config.Config import Config
 
 
 def test_config_debug_is_true():
