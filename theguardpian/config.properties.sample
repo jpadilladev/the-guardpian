@@ -1,0 +1,9 @@
+[settings]
+debug = false
+socket = true
+
+[ifttt]
+webhooks_url = https://maker.ifttt.com/use/your_token
+event_name_on = socket_on
+event_name_off = socket_off
+
