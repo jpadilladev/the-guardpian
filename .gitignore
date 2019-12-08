@@ -1,0 +1,4 @@
+**/theguardpian/config.properties
+
+.idea
+*.pyc
