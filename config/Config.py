@@ -10,17 +10,18 @@ from util.Gpio import Gpio
 
 class Config:
     def __init__(self):
+        log.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',level=log.INFO)
         config = self.__read_config()
         settings = self.__get(config, 'settings')
         debug = settings['debug'] == 'true'
         if debug:
-            log.debug('Debug mode enabled')
+            log.info('Debug mode enabled')
         self.camera = Camera(debug)
         self.gpio = Gpio(debug)
         smtp = self.__get(config, 'smtp')
         self.email_sender = EmailSender(debug, smtp['smtp_server'], smtp['smtp_port'], smtp['from_mail'],
                                         smtp['from_password'], smtp['recipients'], smtp['subject'])
-        self.guardpian_service = GuardpianService(self.camera, self.gpio, self.email_sender)
+        self.guardpian_service = GuardpianService('/home/pi/Desktop/', self.camera, self.gpio, self.email_sender)
 
     def __read_config(self):
         config = configparser.RawConfigParser()

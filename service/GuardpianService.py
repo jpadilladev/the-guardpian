@@ -12,22 +12,29 @@ class GuardpianService:
         self.email_sender = email_sender
 
     def start(self):
-        log.info('Start!')
+        log.info('Started!')
         try:
             sleep(2)
-            self.capture_and_send('start.jpg', 'The Guardpian was started.')
+            self.__capture_and_send('start.jpg', 'The Guardpian was started.')
+            activated = False
             while True:
-                if self.gpio.input(4):
+                motion = self.gpio.input(4)
+                if motion and not activated:
                     log.info("Motion detected!")
-                    self.capture_and_send('motion.jpg', 'The Guardpian detected some movement!')
-                    sleep(1)
-                sleep(1)
+                    self.__capture_and_send('motion.jpg', 'The Guardpian detected some movement!')
+                    activated = True
+                elif not motion:
+                    activated = False
+                sleep(0.5)
         except:
             log.error("Error occurred, cleaning gpio and shutting down...")
+            pass
+        finally:
             self.gpio.cleanup()
             sys.exit("Shutdown.")
 
-    def capture_and_send(self, image_name, content):
+
+    def __capture_and_send(self, image_name, content):
         try:
             image_full_path = self.base_path + image_name
             self.camera.capture(image_full_path)
