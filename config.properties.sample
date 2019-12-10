@@ -7,3 +7,9 @@ webhooks_url = https://maker.ifttt.com/use/your_token
 event_name_on = socket_on
 event_name_off = socket_off
 
+[smtp]
+from_mail = mail@example.com
+from_password = password
+recipients = mail1@example.com,mail2@example.com
+subject = [The Guardpian] New event
+

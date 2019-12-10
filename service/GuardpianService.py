@@ -9,6 +9,7 @@ class GuardpianService:
 
     def start(self):
         print('Start!')
+        self.camera.capture("/home/pi/Desktop/start_capture.jpg")
         try:
             sleep(2)
             while True:
@@ -16,12 +17,10 @@ class GuardpianService:
                 if self.gpio.input(4):
                     print("Motion detected!")
                     try:
-                        # camera.start_preview(alpha=200)
-                        self.camera.capture("/home/pi/Desktop/image.jpg")
+                        self.camera.capture("/home/pi/Desktop/motion_capture.jpg")
                         sleep(1)
                     except:
                         print("Cannot capture.")
-                    # camera.stop_preview()
                 sleep(0.1)
         except:
             print("Error occurred, cleaning gpio and shutting down...")
