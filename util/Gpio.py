@@ -1,20 +1,33 @@
-from random import randint
+import logging
 
 import RPi.GPIO as GPIO
 
 
+log = logging.getLogger(__name__)
+
 class Gpio:
-    def __init__(self, debug):
+    def __init__(self, debug, pin=4):
         self.debug = debug
+        self.pin = pin
         if not self.debug:
             GPIO.setmode(GPIO.BCM)
-            GPIO.setup(4, GPIO.IN)
+            GPIO.setup(self.pin, GPIO.IN)
 
-    def input(self, pin):
-        if self.debug:
-            return randint(0, 10) < 3
+    def add_event_detect(self, callback):
+        if not self.debug:
+            GPIO.add_event_detect(self.pin, GPIO.BOTH, callback=callback, bouncetime=200)
+        log.info("Added event detect to GPIO BOTH on pin " + str(self.pin))
+
+    def remove_event_detect(self):
+        if not self.debug:
+            GPIO.remove_event_detect(self.pin)
+        log.info("Removed event detect to GPIO pin " + str(self.pin))
+        
+    def input(self):
+        if not self.debug:
+            return GPIO.input(self.pin)
         else:
-            return GPIO.input(pin)
+            return True
 
     def cleanup(self):
         if not self.debug:

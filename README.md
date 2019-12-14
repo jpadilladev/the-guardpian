@@ -1,5 +1,7 @@
 # The Guardpian
 
+<img src="https://www.raspberrypi.org/app/uploads/2018/03/RPi-Logo-Reg-SCREEN.png" width="150">
+
 This small project uses a Raspberry Pi 3B+, a Camera and a PIR Sensor and it is used as a Security Camera.
 
 ## Requirements
@@ -9,32 +11,40 @@ This small project uses a Raspberry Pi 3B+, a Camera and a PIR Sensor and it is 
 - [Pi Camera](https://www.amazon.co.uk/gp/product/B07TWHB8B4)
 - Python 3 
 - GIT (to clone this repo)
+- A Gmail account (for sending images to other email accounts)
+- IFTTT webhook (Optional)
 
 ## How it works
 
-When the PIR Sensor captures any motion, it will trigger a camera shot to be saved.
+When starting The Guardpian, it will send you a first camera shot so you can see what the Raspberry Pi is seeing.
+When the PIR Sensor captures any motion, it will trigger a camera shot to be saved and it will sent it to you via email. 
+There is also an option to enable a custom IFTTT webhook, so you can do whatever you want when PIR senses any motion.
+(For example, you can trigger a smart lightbulb or socket to be enabled to take photos in places with low light)
 
 To make it work on your own Raspberry Pi, you will need Python and Git installed on your raspberry.
 
-Plug the camera to your Raspberry and the PIR Motion Sensor using GPIO 4. 
+Plug the camera to your Raspberry and the PIR Motion Sensor using a GPIO pin (default = 4). 
 
-To start The Guardpian, clone this repo and then use Python to run it.
+To start The Guardpian, clone this repo, change the settings file removing the `.sample` suffix and then use Python to run it.
 
 ```
 git clone https://github.com/jpadilladev/the-guardpian.git
-cd theguardpian
+cd the-guardpian
+python3 -m pip install -r requirements.txt
 python3 main.py
 ```
 
-It is recommended to add the starting script at Raspberry boot.
+It is recommended to add a starting script at boot.
 
 ## Settings
-You can change the default settings using `config.properties.sample`, removing the `.sample` suffix and using your own as `config.properties`
+You can change the default settings using `config.properties.sample`, removing the `.sample` suffix and using your own as `config.properties`.
 
 ## Debugging
 
-You can enable debug mode in config.properties under settings section, using `debug = true`
+You can enable debug mode in config.properties under settings section, using `debug = true`.
 
-(WIP)
+Enjoy!
 
 
+
+(This project is under MIT license)
