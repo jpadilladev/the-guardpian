@@ -1,7 +1,8 @@
-import logging as log
+import logging
 
 import requests
 
+log = logging.getLogger(__name__)
 
 class IftttClient:
     def __init__(self, debug, url, event_on, event_off):

@@ -1,5 +1,5 @@
 import configparser
-import logging as log
+import logging
 from pathlib import Path
 
 from service.EmailSender import EmailSender
@@ -8,10 +8,16 @@ from service.IftttClient import IftttClient
 from util.Camera import Camera
 from util.Gpio import Gpio
 
+logging.basicConfig(level=logging.DEBUG,
+                        format='%(asctime)s - %(levelname)s - %(message)s',
+                        handlers=[
+                            logging.FileHandler("/home/pi/Desktop/logs.txt"),
+                            logging.StreamHandler()
+                        ])
+log = logging.getLogger(__name__)
 
 class Config:
     def __init__(self):
-        self.__log_settings()
         config = self.__read_config()
         settings = self.__get(config, 'settings')
         ifttt_settings = self.__get(config, 'ifttt')
@@ -21,7 +27,7 @@ class Config:
         email_sender = self.__create_email_sender(config, debug)
         self.guardpian_service = GuardpianService(
             '/home/pi/Desktop/', Camera(debug), Gpio(debug, int(settings['pin'])), email_sender,
-            int(settings['ifttt']) == 'true',
+            settings['ifttt'] == 'true',
             IftttClient(debug, ifttt_settings['webhooks_url'], ifttt_settings['event_name_on'],
                         ifttt_settings['event_name_off']))
 
@@ -30,9 +36,6 @@ class Config:
         email_sender = EmailSender(debug, smtp['smtp_server'], smtp['smtp_port'], smtp['from_mail'],
                                    smtp['from_password'], smtp['recipients'], smtp['subject'])
         return email_sender
-
-    def __log_settings(self):
-        log.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=log.INFO)
 
     def __read_config(self):
         config = configparser.RawConfigParser()

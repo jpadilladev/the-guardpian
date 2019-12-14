@@ -1,9 +1,10 @@
 import smtplib
-import logging as log
+import logging
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 
+log = logging.getLogger(__name__)
 
 class EmailSender:
     def __init__(self, debug, server, port, from_mail, from_password, recipients, subject):
@@ -18,14 +19,14 @@ class EmailSender:
     def send(self, content, image=None):
         if not self.debug:
             data = self.__create_email_data()
+            data.attach(MIMEText(content))
             if image is not None:
-                data.attach(MIMEText(content))
                 image_data = self.__create_image_data(image)
                 data.attach(image_data)
             session = self.__login()
             session.sendmail(self.from_mail, self.recipients, data.as_string())
             session.quit()
-        log.info("Sent email with content: " + content)
+        log.info("Email sent with content: " + content)
 
     def __create_image_data(self, image):
         image_data = MIMEImage(open(image, 'rb').read(), 'jpg')

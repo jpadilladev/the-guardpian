@@ -1,7 +1,8 @@
-import logging as log
+import logging
 
 from picamera import PiCamera
 
+log = logging.getLogger(__name__)
 
 class Camera:
     def __init__(self, debug):
