@@ -1,17 +1,15 @@
-from time import sleep
-from picamera import PiCamera
-from fractions import Fraction
 import logging as log
+
+from picamera import PiCamera
 
 
 class Camera:
     def __init__(self, debug):
         self.debug = debug
         if not self.debug:
-            self.camera = PiCamera(resolution=(1920, 1080), framerate = 30)
+            self.camera = PiCamera(resolution=(1920, 1080), framerate=30)
             self.camera.led = False
             self.camera.exposure_mode = 'night'
-
 
     def capture(self, path):
         if not self.debug:
@@ -19,7 +17,7 @@ class Camera:
             self.camera.capture(path)
             self.camera.stop_preview()
         log.info('Captured on' + path)
-    
+
     def close(self):
         if not self.debug:
             self.camera.close()

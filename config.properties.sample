@@ -1,9 +1,10 @@
 [settings]
 debug = false
-socket = true
+ifttt = true
+pin = 4
 
 [ifttt]
-webhooks_url = https://maker.ifttt.com/use/your_token
+webhooks_url = https://maker.ifttt.com/trigger/{event}/with/key/your_token
 event_name_on = socket_on
 event_name_off = socket_off
 

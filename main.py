@@ -1,11 +1,11 @@
 from config.Config import Config
+import logging as log
 
 
 def main():
-    print('Starting The Guardpian...')
+    log.info('Starting The Guardpian...')
     config = Config()
-    service = config.guardpian_service
-    service.start()
+    config.guardpian_service.start()
 
 
 if __name__ == '__main__':

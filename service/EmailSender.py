@@ -15,12 +15,13 @@ class EmailSender:
         self.recipients = recipients
         self.subject = subject
 
-    def send(self, content, image):
+    def send(self, content, image=None):
         if not self.debug:
             data = self.__create_email_data()
-            data.attach(MIMEText(content))
-            image_data = self.__create_image_data(image)
-            data.attach(image_data)
+            if image is not None:
+                data.attach(MIMEText(content))
+                image_data = self.__create_image_data(image)
+                data.attach(image_data)
             session = self.__login()
             session.sendmail(self.from_mail, self.recipients, data.as_string())
             session.quit()
@@ -45,4 +46,3 @@ class EmailSender:
         email_data['To'] = self.recipients
         email_data['From'] = self.from_mail
         return email_data
-
