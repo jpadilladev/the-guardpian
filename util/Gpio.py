@@ -1,6 +1,7 @@
 from random import randint
 
 import RPi.GPIO as GPIO
+import logging as log
 
 
 class Gpio:
@@ -9,12 +10,17 @@ class Gpio:
         if not self.debug:
             GPIO.setmode(GPIO.BCM)
             GPIO.setup(4, GPIO.IN)
-
-    def input(self, pin):
-        if self.debug:
-            return randint(0, 10) < 3
-        else:
-            return GPIO.input(pin)
+            
+    def add_event_detect(self, pin, callback):
+        if not self.debug:
+            GPIO.add_event_detect(pin, GPIO.RISING, callback=callback, bouncetime=200)
+        log.info("Added event detect to GPIO " + str(pin))
+        
+                
+    def remove_event_detect(self, pin):
+        if not self.debug:
+            GPIO.remove_event_detect(pin)
+        log.info("Removed event detect to GPIO " + str(pin))
 
     def cleanup(self):
         if not self.debug:
