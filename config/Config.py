@@ -34,7 +34,7 @@ class Config:
     def __create_email_sender(self, config, debug):
         smtp = self.__get(config, 'smtp')
         email_sender = EmailSender(debug, smtp['smtp_server'], smtp['smtp_port'], smtp['from_mail'],
-                                   smtp['from_password'], smtp['recipients'], smtp['subject'])
+                                   smtp['from_password'], smtp['recipients'].split(','), smtp['subject'])
         return email_sender
 
     def __read_config(self):

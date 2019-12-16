@@ -44,6 +44,6 @@ class EmailSender:
     def __create_email_data(self):
         email_data = MIMEMultipart()
         email_data['Subject'] = self.subject
-        email_data['To'] = self.recipients
+        email_data['To'] = ', '.join(self.recipients)
         email_data['From'] = self.from_mail
         return email_data
