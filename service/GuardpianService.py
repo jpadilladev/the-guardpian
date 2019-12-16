@@ -76,6 +76,7 @@ class GuardpianService:
     def __send_ifttt_event_on(self):
         try:
             thread = Thread(target=self.ifttt_client.send_event_on)
+            thread.start()
             self.is_ifttt_on = True
             sleep(1.5)
         except Exception as e:
@@ -86,6 +87,7 @@ class GuardpianService:
             if self.is_ifttt_on:
                 sleep(5)
                 thread = Thread(target=self.ifttt_client.send_event_off)
+                thread.start()
                 self.is_ifttt_on = False
         except Exception as e:
             log.error("Cannot send IFTTT event Off ... " + str(e))
