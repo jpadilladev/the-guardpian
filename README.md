@@ -1,8 +1,10 @@
 # The Guardpian
 
-<img src="https://www.raspberrypi.org/app/uploads/2018/03/RPi-Logo-Reg-SCREEN.png" width="150">
+
+<img src="https://github.com/jpadilladev/the-guardpian/raw/develop/resources/guardpian-logo.png" width="250">
 
 This small project uses a Raspberry Pi 3B+, a Camera and a PIR Sensor and it is used as a Security Camera.
+
 
 ## Requirements
 
@@ -13,6 +15,9 @@ This small project uses a Raspberry Pi 3B+, a Camera and a PIR Sensor and it is 
 - GIT (to clone this repo)
 - A Gmail account (for sending images to other email accounts)
 - IFTTT webhook (Optional)
+
+
+![Guardpian](resources/guardpian.png)
 
 ## How it works
 
@@ -48,3 +53,10 @@ Enjoy!
 
 
 (This project is under MIT license)
+
+---
+
+#### About me
+[LinkedIn](https://www.linkedin.com/in/jorgepad/en)
+
+[Personal Website](https://www.jorgepadilla.es)
