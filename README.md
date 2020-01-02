@@ -1,8 +1,7 @@
 # The Guardpian
 
 
-![Guardpian Logo](resources/guardpian-logo.png =250x)
-
+<img src="https://github.com/jpadilladev/the-guardpian/raw/develop/resources/guardpian-logo.png" width="250">
 
 This small project uses a Raspberry Pi 3B+, a Camera and a PIR Sensor and it is used as a Security Camera.
 
